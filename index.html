@@ -11,18 +11,15 @@
     body { font-family: 'Pretendard', system-ui, sans-serif; }
     
     .sidebar-link {
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.25s cubic-bezier(0.4, 0.0, 0.2, 1);
     }
     .sidebar-link:hover {
-      transform: translateX(8px);
-      background-color: #1f2937;
-    }
-    .new-window-btn {
-      transition: all 0.2s ease;
+      transform: translateX(10px);
+      background-color: #27272a;
     }
     .new-window-btn:hover {
-      background-color: #3b82f6;
-      transform: scale(1.05);
+      background-color: #2563eb;
+      transform: scale(1.08);
     }
   </style>
 </head>
@@ -31,29 +28,28 @@
   <div class="flex h-screen">
 
     <!-- 사이드바 -->
-    <div class="w-80 bg-zinc-900 border-r border-zinc-800 flex flex-col shadow-2xl">
-      <div class="p-8 border-b border-zinc-800 bg-zinc-950">
+    <div class="w-80 bg-zinc-900 border-r border-zinc-800 flex flex-col">
+      <div class="p-8 border-b border-zinc-800">
         <div class="flex items-center gap-4">
-          <div class="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center">
-            <i class="fas fa-shield-alt text-white text-2xl"></i>
+          <div class="w-11 h-11 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
+            <i class="fas fa-shield-alt text-white text-3xl"></i>
           </div>
           <div>
-            <h1 class="text-3xl font-bold tracking-tight">안전공급팀</h1>
-            <p class="text-zinc-400 text-sm">종합 관제센터</p>
+            <h1 class="text-3xl font-bold">안전공급팀</h1>
+            <p class="text-zinc-400 text-sm -mt-1">종합 관제센터</p>
           </div>
         </div>
       </div>
 
-      <div class="flex-1 p-6 overflow-y-auto space-y-2">
+      <div class="flex-1 p-6 space-y-2 overflow-y-auto">
         <a href="?view=dashboard" class="sidebar-link flex items-center justify-between px-6 py-4 rounded-3xl text-lg font-medium">
           <div class="flex items-center gap-4">
             <i class="fas fa-house w-6 text-blue-400"></i>
             <span>오늘의 현황</span>
           </div>
-          <button onclick="openNewWindow('dashboard'); event.preventDefault(); event.stopImmediatePropagation();" 
-                  class="new-window-btn text-sm px-4 py-2 bg-zinc-800 hover:bg-blue-600 rounded-2xl flex items-center gap-2">
-            <i class="fas fa-external-link-alt"></i>
-            <span>새 창</span>
+          <button onclick="openNewWindow('dashboard'); event.preventDefault(); event.stopImmediatePropagation()" 
+                  class="new-window-btn text-sm px-5 py-2 bg-zinc-800 rounded-2xl flex items-center gap-2">
+            <i class="fas fa-external-link-alt"></i> 새 창
           </button>
         </a>
 
@@ -62,10 +58,9 @@
             <i class="fas fa-users w-6 text-emerald-400"></i>
             <span>팀원 동향</span>
           </div>
-          <button onclick="openNewWindow('teamstatus'); event.preventDefault(); event.stopImmediatePropagation();" 
-                  class="new-window-btn text-sm px-4 py-2 bg-zinc-800 hover:bg-blue-600 rounded-2xl flex items-center gap-2">
-            <i class="fas fa-external-link-alt"></i>
-            <span>새 창</span>
+          <button onclick="openNewWindow('teamstatus'); event.preventDefault(); event.stopImmediatePropagation()" 
+                  class="new-window-btn text-sm px-5 py-2 bg-zinc-800 rounded-2xl flex items-center gap-2">
+            <i class="fas fa-external-link-alt"></i> 새 창
           </button>
         </a>
 
@@ -74,44 +69,97 @@
             <i class="fas fa-clipboard-list w-6 text-amber-400"></i>
             <span>업무 현황판</span>
           </div>
-          <button onclick="openNewWindow('taskboard'); event.preventDefault(); event.stopImmediatePropagation();" 
-                  class="new-window-btn text-sm px-4 py-2 bg-zinc-800 hover:bg-blue-600 rounded-2xl flex items-center gap-2">
-            <i class="fas fa-external-link-alt"></i>
-            <span>새 창</span>
+          <button onclick="openNewWindow('taskboard'); event.preventDefault(); event.stopImmediatePropagation()" 
+                  class="new-window-btn text-sm px-5 py-2 bg-zinc-800 rounded-2xl flex items-center gap-2">
+            <i class="fas fa-external-link-alt"></i> 새 창
           </button>
         </a>
-
-        <!-- 더 많은 메뉴 추가하고 싶으면 여기 복사해서 붙여넣기 -->
       </div>
 
       <div class="p-6 border-t border-zinc-800 text-xs text-zinc-500 text-center">
-        Safety Team • Real-time Dashboard
+        Real-time • Supabase
       </div>
     </div>
 
     <!-- 메인 영역 -->
     <div class="flex-1 flex flex-col">
-      <header class="h-20 bg-zinc-900 border-b border-zinc-800 flex items-center px-10">
-        <h2 id="pageTitle" class="text-3xl font-semibold tracking-tight">오늘의 현황</h2>
-        <div class="ml-auto text-zinc-400 text-sm flex items-center gap-2">
-          <i class="fas fa-circle text-emerald-500 animate-pulse"></i>
-          실시간 연결됨
+      <header class="h-20 bg-zinc-900 border-b border-zinc-800 px-10 flex items-center justify-between">
+        <h2 id="pageTitle" class="text-3xl font-semibold">오늘의 현황</h2>
+        <div class="flex items-center gap-3 text-emerald-400 text-sm">
+          <i class="fas fa-circle animate-pulse"></i>
+          실시간 연결 중
         </div>
       </header>
 
-      <div class="flex-1 p-10 overflow-auto bg-zinc-950">
-        <div id="contentArea" class="max-w-7xl mx-auto">
-          <div class="text-center py-32">
-            <i class="fas fa-desktop text-7xl text-zinc-700 mb-6"></i>
-            <p class="text-2xl text-zinc-400 mb-3">원하는 섹션을 선택해주세요</p>
-            <p class="text-zinc-500">사이드바의 <span class="text-blue-400">"새 창"</span> 버튼을 눌러<br>여러 모니터처럼 동시에 사용해보세요</p>
-          </div>
-        </div>
+      <div class="flex-1 p-10 overflow-auto" id="mainContent">
+        <!-- 여기에 view에 따라 내용이 바뀜 -->
       </div>
     </div>
   </div>
 
   <script>
+    const views = {
+      dashboard: `
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-zinc-900 rounded-3xl p-8">
+            <h3 class="text-lg text-zinc-400 mb-2">현재 근무 인원</h3>
+            <p class="text-6xl font-bold text-white">12<span class="text-2xl text-emerald-400">/18</span></p>
+          </div>
+          <div class="bg-zinc-900 rounded-3xl p-8">
+            <h3 class="text-lg text-zinc-400 mb-2">오늘 처리 업무</h3>
+            <p class="text-6xl font-bold text-white">47</p>
+          </div>
+          <div class="bg-zinc-900 rounded-3xl p-8">
+            <h3 class="text-lg text-zinc-400 mb-2">긴급 상황</h3>
+            <p class="text-6xl font-bold text-red-400">0</p>
+          </div>
+        </div>
+        <div class="mt-10">
+          <h3 class="text-xl font-semibold mb-6">최근 활동</h3>
+          <div class="space-y-4">
+            <div class="bg-zinc-900 rounded-2xl p-6">• 김팀장 - 14:22 현장 점검 완료</div>
+            <div class="bg-zinc-900 rounded-2xl p-6">• 이과장 - 13:45 안전교육 진행</div>
+          </div>
+        </div>
+      `,
+
+      teamstatus: `
+        <div class="bg-zinc-900 rounded-3xl p-8">
+          <h3 class="text-2xl font-semibold mb-8">팀원 동향</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-zinc-800 rounded-2xl p-6">
+              <p class="text-emerald-400 font-medium">● 근무 중</p>
+              <p class="text-4xl mt-4">8명</p>
+            </div>
+            <div class="bg-zinc-800 rounded-2xl p-6">
+              <p class="text-amber-400 font-medium">● 휴식 중</p>
+              <p class="text-4xl mt-4">3명</p>
+            </div>
+          </div>
+        </div>
+      `,
+
+      taskboard: `
+        <div class="bg-zinc-900 rounded-3xl p-8">
+          <h3 class="text-2xl font-semibold mb-6">업무 현황판</h3>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-red-900/30 border border-red-500 rounded-2xl p-6">
+              <h4 class="font-medium text-red-400">긴급 업무</h4>
+              <p class="text-5xl mt-4">3</p>
+            </div>
+            <div class="bg-amber-900/30 border border-amber-500 rounded-2xl p-6">
+              <h4 class="font-medium text-amber-400">진행 중</h4>
+              <p class="text-5xl mt-4">12</p>
+            </div>
+            <div class="bg-emerald-900/30 border border-emerald-500 rounded-2xl p-6">
+              <h4 class="font-medium text-emerald-400">완료</h4>
+              <p class="text-5xl mt-4">32</p>
+            </div>
+          </div>
+        </div>
+      `
+    };
+
     function getView() {
       const params = new URLSearchParams(window.location.search);
       return params.get('view') || 'dashboard';
@@ -121,27 +169,28 @@
       const titles = {
         dashboard: '오늘의 현황',
         teamstatus: '팀원 동향',
-        taskboard: '업무 현황판',
-        mytasks: '내 업무',
-        goals: '목표 관리',
-        schedule: '일정 관리',
-        notice: '공지사항',
-        performance: '실적 관리',
-        admin: '관리자'
+        taskboard: '업무 현황판'
       };
       const titleText = titles[view] || '종합 관제센터';
       document.getElementById('pageTitle').textContent = titleText;
       document.title = `안전공급팀 - ${titleText}`;
     }
 
-    function openNewWindow(view) {
-      const url = window.location.origin + window.location.pathname + '?view=' + view;
-      window.open(url, '_blank', 'width=1480,height=960,menubar=no,toolbar=no,location=no,status=no,scrollbars=yes,resizable=yes');
+    function renderContent(view) {
+      const contentArea = document.getElementById('mainContent');
+      contentArea.innerHTML = views[view] || views.dashboard;
     }
 
+    function openNewWindow(view) {
+      const url = window.location.origin + window.location.pathname + '?view=' + view;
+      window.open(url, '_blank', 'width=1480,height=960,menubar=no,toolbar=no,scrollbars=yes,resizable=yes');
+    }
+
+    // 페이지 로드
     window.onload = () => {
       const currentView = getView();
       setTitle(currentView);
+      renderContent(currentView);
     };
   </script>
 </body>
