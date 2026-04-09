@@ -1,124 +1,148 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>안전공급팀 종합 관제센터</title>
- <script src="https://cdn.tailwindcss.com"></script>
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
- <style>
- @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap');
- body { font-family: 'Pretendard', system-ui, sans-serif; }
- </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>안전공급팀 종합 관제센터</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap');
+    body { font-family: 'Pretendard', system-ui, sans-serif; }
+    
+    .sidebar-link {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .sidebar-link:hover {
+      transform: translateX(8px);
+      background-color: #1f2937;
+    }
+    .new-window-btn {
+      transition: all 0.2s ease;
+    }
+    .new-window-btn:hover {
+      background-color: #3b82f6;
+      transform: scale(1.05);
+    }
+  </style>
 </head>
-<body class="bg-gray-950 text-gray-100 min-h-screen">
+<body class="bg-zinc-950 text-zinc-100 min-h-screen overflow-hidden">
 
- <div class="flex h-screen overflow-hidden">
+  <div class="flex h-screen">
 
- <!-- 사이드바 -->
- <div class="w-72 bg-gray-900 border-r border-gray-700 flex flex-col">
- <div class="p-6 border-b border-gray-700 bg-gray-950">
- <h1 class="text-2xl font-bold flex items-center gap-3">
- <i class="fas fa-shield-alt text-blue-500"></i>
- 안전공급팀
- </h1>
- <p class="text-gray-400 text-sm mt-1">종합 관제센터</p>
- </div>
+    <!-- 사이드바 -->
+    <div class="w-80 bg-zinc-900 border-r border-zinc-800 flex flex-col shadow-2xl">
+      <div class="p-8 border-b border-zinc-800 bg-zinc-950">
+        <div class="flex items-center gap-4">
+          <div class="w-10 h-10 bg-blue-600 rounded-2xl flex items-center justify-center">
+            <i class="fas fa-shield-alt text-white text-2xl"></i>
+          </div>
+          <div>
+            <h1 class="text-3xl font-bold tracking-tight">안전공급팀</h1>
+            <p class="text-zinc-400 text-sm">종합 관제센터</p>
+          </div>
+        </div>
+      </div>
 
- <div class="flex-1 p-4 overflow-y-auto space-y-1">
- <a href="?view=dashboard" class="flex items-center justify-between px-4 py-3.5 rounded-2xl hover:bg-gray-800 group">
- <div class="flex items-center gap-3 text-gray-200">
- <i class="fas fa-home w-5"></i>
- <span class="font-medium">오늘의 현황</span>
- </div>
- <button onclick="open NewWindow('dashboard'); event.preventDefault(); event.stopImmediatePropagation();" 
- class="text-xs px-3 py-1 bg-gray-700 hover:bg-blue-600 rounded-xl transition-colors">
- 새 창
- </button>
- </a>
+      <div class="flex-1 p-6 overflow-y-auto space-y-2">
+        <a href="?view=dashboard" class="sidebar-link flex items-center justify-between px-6 py-4 rounded-3xl text-lg font-medium">
+          <div class="flex items-center gap-4">
+            <i class="fas fa-house w-6 text-blue-400"></i>
+            <span>오늘의 현황</span>
+          </div>
+          <button onclick="openNewWindow('dashboard'); event.preventDefault(); event.stopImmediatePropagation();" 
+                  class="new-window-btn text-sm px-4 py-2 bg-zinc-800 hover:bg-blue-600 rounded-2xl flex items-center gap-2">
+            <i class="fas fa-external-link-alt"></i>
+            <span>새 창</span>
+          </button>
+        </a>
 
- <a href="?view=teamstatus" class="flex items-center justify-between px-4 py-3.5 rounded-2xl hover:bg-gray-800 group">
- <div class="flex items-center gap-3 text-gray-200">
- <i class="fas fa-users w-5"></i>
- <span class="font-medium">팀원 동향</span>
- </div>
- <button onclick="openNewWindow('teamstatus'); event.preventDefault(); event.stopImmediatePropagation();" 
- class="text-xs px-3 py-1 bg-gray-700 hover:bg-blue-600 rounded-xl transition-colors">
- 새 창
- </button>
- </a>
+        <a href="?view=teamstatus" class="sidebar-link flex items-center justify-between px-6 py-4 rounded-3xl text-lg font-medium">
+          <div class="flex items-center gap-4">
+            <i class="fas fa-users w-6 text-emerald-400"></i>
+            <span>팀원 동향</span>
+          </div>
+          <button onclick="openNewWindow('teamstatus'); event.preventDefault(); event.stopImmediatePropagation();" 
+                  class="new-window-btn text-sm px-4 py-2 bg-zinc-800 hover:bg-blue-600 rounded-2xl flex items-center gap-2">
+            <i class="fas fa-external-link-alt"></i>
+            <span>새 창</span>
+          </button>
+        </a>
 
- <a href="?view=taskboard" class="flex items-center justify-between px-4 py-3.5 rounded-2xl hover:bg-gray-800 group">
- <div class="flex items-center gap-3 text-gray-200">
- <i class="fas fa-clipboard-list w-5"></i>
- <span class="font-medium">업무 현황판</span>
- </div>
- <button onclick="openNewWindow('taskboard'); event.preventDefault(); event.stopImmediatePropagation();" 
- class="text-xs px-3 py-1 bg-gray-700 hover:bg-blue-600 rounded-xl transition-colors">
- 새 창
- </button>
- </a>
+        <a href="?view=taskboard" class="sidebar-link flex items-center justify-between px-6 py-4 rounded-3xl text-lg font-medium">
+          <div class="flex items-center gap-4">
+            <i class="fas fa-clipboard-list w-6 text-amber-400"></i>
+            <span>업무 현황판</span>
+          </div>
+          <button onclick="openNewWindow('taskboard'); event.preventDefault(); event.stopImmediatePropagation();" 
+                  class="new-window-btn text-sm px-4 py-2 bg-zinc-800 hover:bg-blue-600 rounded-2xl flex items-center gap-2">
+            <i class="fas fa-external-link-alt"></i>
+            <span>새 창</span>
+          </button>
+        </a>
 
- <!-- 더 많은 메뉴를 원하면 여기 추가하면 돼 -->
- </div>
+        <!-- 더 많은 메뉴 추가하고 싶으면 여기 복사해서 붙여넣기 -->
+      </div>
 
- <div class="p-4 border-t border-gray-700 text-center text-xs text-gray-500">
- Safety Team Dashboard
- </div>
- </div>
+      <div class="p-6 border-t border-zinc-800 text-xs text-zinc-500 text-center">
+        Safety Team • Real-time Dashboard
+      </div>
+    </div>
 
- <!-- 메인 영역 -->
- <div class="flex-1 flex flex-col">
- <header class="h-16 bg-gray-900 border-b border-gray-700 flex items-center px-8 justify-between">
- <h2 id="pageTitle" class="text-2xl font-semibold">오늘의 현황</h2>
- <div class="text-sm text-gray-400">여러 창으로 자유롭게 사용 가능</div>
- </header>
+    <!-- 메인 영역 -->
+    <div class="flex-1 flex flex-col">
+      <header class="h-20 bg-zinc-900 border-b border-zinc-800 flex items-center px-10">
+        <h2 id="pageTitle" class="text-3xl font-semibold tracking-tight">오늘의 현황</h2>
+        <div class="ml-auto text-zinc-400 text-sm flex items-center gap-2">
+          <i class="fas fa-circle text-emerald-500 animate-pulse"></i>
+          실시간 연결됨
+        </div>
+      </header>
 
- <div class="flex-1 p-8 overflow-auto bg-gray-950">
- <div id="contentArea" class="max-w-7xl mx-auto">
- <p class="text-center text-gray-400 py-20 text-lg">
- 사이드바에서 메뉴를 클릭하거나,<br>
- <strong>“ 새 창” 버튼</strong>을 눌러 여러 창을 동시에 띄워보세요.
- </p>
- </div>
- </div>
- </div>
- </div>
+      <div class="flex-1 p-10 overflow-auto bg-zinc-950">
+        <div id="contentArea" class="max-w-7xl mx-auto">
+          <div class="text-center py-32">
+            <i class="fas fa-desktop text-7xl text-zinc-700 mb-6"></i>
+            <p class="text-2xl text-zinc-400 mb-3">원하는 섹션을 선택해주세요</p>
+            <p class="text-zinc-500">사이드바의 <span class="text-blue-400">"새 창"</span> 버튼을 눌러<br>여러 모니터처럼 동시에 사용해보세요</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
- <script>
- function getView() {
- const params = new URLSearchParams(window.location.search);
- return params.get('view') || 'dashboard';
- }
+  <script>
+    function getView() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('view') || 'dashboard';
+    }
 
- function setTitle(view) {
- const titles = {
- dashboard: '오늘의 현황',
- teamstatus: '팀원 동향',
- taskboard: '업무 현황판',
- mytasks: '내 업무',
- goals: '목표 관리',
- schedule: '일정 관리',
- notice: '공지사항',
- performance: '실적 관리',
- admin: '관리자'
- };
- const titleText = titles[view] || '종합 관제센터';
- document.getElementById('pageTitle').textContent = titleText;
- document.title = `안전공급팀 - ${titleText}`;
- }
+    function setTitle(view) {
+      const titles = {
+        dashboard: '오늘의 현황',
+        teamstatus: '팀원 동향',
+        taskboard: '업무 현황판',
+        mytasks: '내 업무',
+        goals: '목표 관리',
+        schedule: '일정 관리',
+        notice: '공지사항',
+        performance: '실적 관리',
+        admin: '관리자'
+      };
+      const titleText = titles[view] || '종합 관제센터';
+      document.getElementById('pageTitle').textContent = titleText;
+      document.title = `안전공급팀 - ${titleText}`;
+    }
 
- function openNewWindow(view) {
- const url = window.location.origin + window.location.pathname + '?view=' + view;
- window.open(url, '_blank', 'width=1400,height=920,menubar=no,toolbar=no,location=no,status=no,scrollbars=yes,resizable=yes');
- }
+    function openNewWindow(view) {
+      const url = window.location.origin + window.location.pathname + '?view=' + view;
+      window.open(url, '_blank', 'width=1480,height=960,menubar=no,toolbar=no,location=no,status=no,scrollbars=yes,resizable=yes');
+    }
 
- // 페이지 로드 시
- window.onload = () => {
- const currentView = getView();
- setTitle(currentView);
- console.log('현재 열린 뷰:', currentView);
- };
- </script>
+    window.onload = () => {
+      const currentView = getView();
+      setTitle(currentView);
+    };
+  </script>
 </body>
 </html>
